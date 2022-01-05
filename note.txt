@@ -1,0 +1,8 @@
+sudo systemctl start mongod
+sudo systemctl status mongod
+sudo systemctl restart mongod
+sudo systemctl daemon-reload
+
+mongo -u jack -p
+
+kalau di terminal, camelCase. kalau di golang PascalCase.
