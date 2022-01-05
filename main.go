@@ -1,75 +1,74 @@
 package main
 
-import (
-	"context"
-	"fmt"
-	"log"
-	"time"
-
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/mongo/readpref"
-)
-
-const uri = "mongodb://localhost:27017"
+import "go-mongodb/delivery"
 
 func main() {
-	credential := options.Credential{
-		Username: "jack",
-		Password: "12345678",
-	}
+	var server delivery.Routes
+	server.StartGin()
 
-	clientOptions := options.Client()
-	// Udah buat, maka dari itu di SetAuth(credential)
-	clientOptions.ApplyURI(uri).SetAuth(credential)
-
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	defer cancel()
-
-	client, err := mongo.Connect(ctx, clientOptions)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer func() {
-		if err = client.Disconnect(ctx); err != nil {
-			panic(err)
-		}
-	}()
-
-	err = client.Ping(ctx, readpref.Primary())
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println("Successfully to connect and pinged")
-
-	// coll := client.Database("db_enigma").Collection("students")
-	coll2 := client.Database("db_enigma").Collection("products")
-
-	// Insert for Students
-	// const layout = "2006-01-02"
-	// dt, _ := time.Parse(layout, "2022-01-05")
-	// newStudent := Student{
-	// 	Id:       primitive.NewObjectID(),
-	// 	Name:     "Phil Foden",
-	// 	Gender:   "M",
-	// 	Age:      23,
-	// 	JoinDate: dt,
-	// 	IdCard:   "111",
-	// 	Senior:   true,
+	// mdb, err := db.InitResource()
+	// if err != nil {
+	// 	log.Fatal(err)
 	// }
 
-	// InsertOneStudent(ctx, coll, newStudent)
+	// ctx, cancel := utils.InitContext()
+	// defer cancel()
+	// defer func() {
+	// 	if err = mdb.Db.Client().Disconnect(ctx); err != nil {
+	// 		panic(err)
+	// 	}
+	// }()
 
-	// FindAllStudent(ctx, coll)
+	// if err := mdb.Db.Client().Ping(ctx, readpref.Primary()); err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println("Successfully to connect and pinged")
 
-	// FindStudentByGenderAndAge(ctx, coll, "M", 23)
+	// student := repository.NewStudentRepository(mdb)
 
-	// CountStudent(ctx, coll)
-	// CountStudentByAge(ctx, coll, 23)
+	// getAll, err := student.GetAll()
+	// if err != nil {
+	// 	log.Println(err)
+	// } else {
+	// 	for _, doc := range getAll {
+	// 		fmt.Println(doc)
+	// 	}
+	// }
+	// fmt.Println()
 
-	// FindStudentStructByGenderAndAge(ctx, coll, "M", 23)
+	// getOne, err := student.GetOneByUsername("Faiz")
+	// if err != nil {
+	// 	log.Println(err)
+	// } else {
+	// 	fmt.Println(*getOne)
+	// }
+	// fmt.Println()
 
-	CountProductByCategory(ctx, coll2, "food")
+	// newStudent := model.Student{
+	// 	Id:       primitive.NewObjectID(),
+	// 	Name:     "Jude Bellingham",
+	// 	Gender:   "M",
+	// 	Age:      18,
+	// 	JoinDate: time.Now(),
+	// 	IdCard:   "2218",
+	// 	Senior:   false,
+	// }
+	// createOne, err := student.CreateOne(newStudent)
+	// if err != nil {
+	// 	log.Println(err)
+	// } else {
+	// 	fmt.Println(*createOne)
+	// }
+	// fmt.Println()
+
+	// pagination, err := student.GetWithPage(2, 2)
+	// if err != nil {
+	// 	log.Println(err)
+	// } else {
+	// 	for _, doc := range pagination {
+	// 		fmt.Println(doc)
+	// 	}
+	// }
+	// fmt.Println()
+
 }

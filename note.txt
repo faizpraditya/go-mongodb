@@ -6,3 +6,10 @@ sudo systemctl daemon-reload
 mongo -u jack -p
 
 kalau di terminal, camelCase. kalau di golang PascalCase.
+
+MONGO_HOST=localhost MONGO_PORT=27017 MONGO_DBNAME=db_enigma MONGO_USER=jack MONGO_PASSWORD=12345678 go run main.go
+
+api
+MONGO_HOST=localhost MONGO_PORT=27017 MONGO_DBNAME=db_enigma MONGO_USER=jack MONGO_PASSWORD=12345678 API_HOST=localhost API_PORT=8888 go run main.go
+
+github.com/jutionck/go-mongodb
